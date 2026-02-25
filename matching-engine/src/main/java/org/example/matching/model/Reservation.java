@@ -2,6 +2,7 @@ package org.example.matching.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
 import lombok.Setter;
 
 @Getter @Setter @AllArgsConstructor
@@ -15,17 +16,25 @@ public class Reservation {
     private long reservedShares;
     private final Boolean isBuy;
 
-    public void reduceBy(int qty) {
+    public Reservation(String orderId, String userId, long priceatReserve, int remainingQty, Boolean isBuy) {
+        OrderId = orderId;
+        this.userId = userId;
+        this.priceatReserve = priceatReserve;
+        this.remainingQty = remainingQty;
+        this.isBuy = isBuy;
+    }
+
+    public long reduceBy(int qty) {
         if (qty <= 0 || remainingQty <= 0) {
-            return;
+            return 0;
         }
 
         // Don't consume more than what is left in this specific reservation
         int consumed = Math.min(qty, remainingQty);
-
+        long cashUsed =0;
         if (isBuy) {
             // Calculate how much cash was 'used' for this portion of the trade
-            long cashUsed = (long) consumed * priceatReserve;
+            cashUsed = (long) consumed * priceatReserve;
 
             // Subtract the used cash from the total reserved cash
             this.reservedCash -= cashUsed;
@@ -40,4 +49,5 @@ public class Reservation {
 
         // Finally, reduce the quantity so we know how much of the order is left to fill
         this.remainingQty -= consumed;
+        return  cashUsed;
     }}
