@@ -46,6 +46,26 @@ public class InMemoryWalletService implements WalletService {
         return true;
     }
 
+
+@Override
+public void releaseReservation(String orderId){
+        Reservation r = reservations.remove(orderId);
+        if(r==null)return;
+        Wallet w = ensureWallet(r.getUserId());
+        if(r.getIsBuy()){
+            w.releaseReserveCash(r.getReservedCash());
+
+        }else{
+            w.releaseReservedShares(INSTRUMENT,r.getReservedShares());
+
+        }
+
+
+}
+
+
+
+
     @Override
     public void SettleTrade(Trade trade) {
         Order buy = orderRepository.findById(trade.getBuyOrderId()).orElse(null);
@@ -87,4 +107,4 @@ public class InMemoryWalletService implements WalletService {
             reservations.remove(sell.getId());
         }
     }
-} // ONLY ONE closing bracket here to end the class!
+}
