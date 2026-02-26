@@ -122,7 +122,7 @@ public class OrderBook {
         while(buy.getQuantity()>0&& !ask.isEmpty()){
             //it is first seen if ask is not empty
             Map.Entry<Long,Deque<Order>> bestAskEntry = ask.firstEntry();
-            //getting the root node of treemap i.e. least value of it .
+            //getting the root node of treemap i.e.top value of it .
             long askPrice = bestAskEntry.getKey();
             // the long will be price do .key() is askprice of that node
 

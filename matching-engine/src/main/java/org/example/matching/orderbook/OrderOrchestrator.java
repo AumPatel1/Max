@@ -12,6 +12,8 @@ package org.example.matching.orderbook;//package org.example.matching.orderbook;
 
 
      //   import org.example.matching.engine.MatchingEngine;
+        import org.example.matching.Wallets.InMemoryWalletService;
+        import org.example.matching.Wallets.RiskManager;
         import org.example.matching.journal.EventJournal;
         import org.example.matching.matching.MatchingEngine;
         import org.example.matching.model.Order;
@@ -34,6 +36,9 @@ public class OrderOrchestrator {
         this.eventJournal = eventJournal;
         this.orderValidator= orderValidator;
     }
+//
+//    public OrderOrchestrator(MatchingEngine engine, EventJournal journal, RiskManager riskManager, OrderRepository orderRepo, InMemoryWalletService walletService) {
+//    }
 
     public void submitOrder(Order order) {
         if (!orderValidator.validate(order)) {
