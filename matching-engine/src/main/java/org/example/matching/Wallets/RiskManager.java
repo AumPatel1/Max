@@ -17,7 +17,7 @@ public class RiskManager {
 
     public boolean checkAndReserve(Order order) {
         // currently just delegates to walletService which performs the reserve attempt
-        orderRepository.save(order);
+        //orderRepository.save(order);
 
         // 2. NOW ATTEMPT TO RESERVE
         return walletService.reserveForOrder(order);
