@@ -11,11 +11,13 @@ import org.example.matching.matching.MatchingEngine;
 import org.example.matching.model.Order;
 import org.example.matching.model.Trade;
 import org.example.matching.orderbook.OrderRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Service
 @RequiredArgsConstructor
 public class OrderService {
 

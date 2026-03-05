@@ -12,6 +12,7 @@ public class Order {
     int quantity;
     long timestamp;
     OrderSide side;
+    String instrument; // Added for multi-book support
 
     public Order(String userId, long price, int quantity, long timestamp, OrderSide side) {
         this.userId = userId;
@@ -19,6 +20,7 @@ public class Order {
         this.quantity = quantity;
         this.timestamp = timestamp;
         this.side = side;
+        this.instrument = "DEFAULT"; // Default instrument
     }
 
     public Order(String id, String userId, long price, int quantity, long timestamp, OrderSide side) {
@@ -28,6 +30,17 @@ public class Order {
         this.quantity = quantity;
         this.timestamp = timestamp;
         this.side = side;
+        this.instrument = "DEFAULT"; // Default instrument
+    }
+
+    public Order(String id, String userId, long price, int quantity, long timestamp, OrderSide side, String instrument) {
+        this.id = id;
+        this.userId = userId;
+        this.price = price;
+        this.quantity = quantity;
+        this.timestamp = timestamp;
+        this.side = side;
+        this.instrument = instrument != null ? instrument : "DEFAULT";
     }
 
     public String getId() {
@@ -68,5 +81,13 @@ public class Order {
                 ", timestamp=" + timestamp +
                 ", side=" + side +
                 '}';
+    }
+    
+    public String getInstrument() {
+        return instrument;
+    }
+    
+    public void setInstrument(String instrument) {
+        this.instrument = instrument;
     }
 }

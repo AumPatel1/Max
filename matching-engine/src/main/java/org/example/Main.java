@@ -34,17 +34,17 @@ public class Main {
         System.out.println("Testing MatchingEngine directly...");
         MatchingEngine engine = new MatchingEngine();
         
-        Order s1 = new Order(IdGenerator.newId(),"seller1",100L,10,System.currentTimeMillis(),OrderSide.SELL);
+        Order s1 = new Order(IdGenerator.newId(),"seller1",100L,10,System.currentTimeMillis(),OrderSide.SELL, "AAPL");
         engine.placeOrder(s1);
         System.out.println("After SELL (10 @100):");
         System.out.println(engine.dumpBook());
 
-        Order b1 = new Order(IdGenerator.newId(), "buyer1", 105L, 4, System.currentTimeMillis(), OrderSide.BUY);
+        Order b1 = new Order(IdGenerator.newId(), "buyer1", 105L, 4, System.currentTimeMillis(), OrderSide.BUY, "AAPL");
         List<Trade> t1 = engine.placeOrder(b1);
         System.out.println("Trade executed: " + t1.size() + " trade(s)");
         System.out.println(engine.dumpBook());
 
-        Order b2 = new Order(IdGenerator.newId(), "buyer2", 100L, 6, System.currentTimeMillis(), OrderSide.BUY);
+        Order b2 = new Order(IdGenerator.newId(), "buyer2", 100L, 6, System.currentTimeMillis(), OrderSide.BUY, "AAPL");
         List<Trade> t2 = engine.placeOrder(b2);
         System.out.println("Trade executed: " + t2.size() + " trade(s)");
         System.out.println("Final order book:\n" + engine.dumpBook());
@@ -70,9 +70,9 @@ public class Main {
                           ", Seller shares: " + walletService.getWallet("seller1").getAvailableShares("MARKET"));
 
         // create orders
-        Order sell = new Order(UUID.randomUUID().toString(), "seller1", 100L, 10, System.currentTimeMillis(), OrderSide.SELL);
-        Order buy1 = new Order(UUID.randomUUID().toString(), "buyer1", 105L, 4, System.currentTimeMillis(), OrderSide.BUY);
-        Order buy2 = new Order(UUID.randomUUID().toString(), "buyer1", 100L, 6, System.currentTimeMillis(), OrderSide.BUY);
+        Order sell = new Order(UUID.randomUUID().toString(), "seller1", 100L, 10, System.currentTimeMillis(), OrderSide.SELL, "TSLA");
+        Order buy1 = new Order(UUID.randomUUID().toString(), "buyer1", 105L, 4, System.currentTimeMillis(), OrderSide.BUY, "TSLA");
+        Order buy2 = new Order(UUID.randomUUID().toString(), "buyer1", 100L, 6, System.currentTimeMillis(), OrderSide.BUY, "TSLA");
         
         System.out.println("\nSubmitting orders...");
         orchestrator.submitOrder(sell);

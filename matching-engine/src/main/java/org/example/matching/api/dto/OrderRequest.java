@@ -6,10 +6,12 @@ import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Getter;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Getter
 public class OrderRequest {
     @NotBlank(message = "User ID is required")
     private String userId;
@@ -28,4 +30,28 @@ public class OrderRequest {
 
     @NotBlank(message = "Idempotency key is required")
     private String idempotencyKey; // Unique string from the frontend
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getInstrument() {
+        return instrument;
+    }
+
+    public String getSide() {
+        return side;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public String getIdempotencyKey() {
+        return idempotencyKey;
+    }
 }

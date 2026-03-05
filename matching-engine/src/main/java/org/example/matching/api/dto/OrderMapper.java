@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class OrderMapper {
     public static Order toDomain(OrderRequest request) {
-        return new Order(
+        Order order = new Order(
                 UUID.randomUUID().toString(),
                 request.getUserId(),
                 request.getPrice(),
@@ -15,5 +15,7 @@ public class OrderMapper {
                 System.currentTimeMillis(),
                 OrderSide.valueOf(request.getSide().toUpperCase())
         );
+        order.setInstrument(request.getInstrument());
+        return order;
     }
 }

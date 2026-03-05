@@ -105,8 +105,7 @@ public class OrderBook {
                 addToBook(ask, incoming);
             }
         }
-       }
-       return trades;
+        return trades;
    }
     private void matchBuy(Order buy, List<Trade> trades) {
         while(buy.getQuantity()>0&& !ask.isEmpty()){
@@ -144,12 +143,9 @@ public class OrderBook {
                     //paritally filled resting order remains
                 }
             }
-
-}
-}
-    EventJournal a;
-    private void matchSell(Order sell, List<Trade> trades
-                           ) {
+        }
+    }
+    private void matchSell(Order sell, List<Trade> trades) {
         while (sell.getQuantity() > 0 && !bids.isEmpty()) {
             Map.Entry<Long, Deque<Order>> bestBidEntry = bids.firstEntry(); // because bids is reverseOrder
             long bidPrice = bestBidEntry.getKey();
