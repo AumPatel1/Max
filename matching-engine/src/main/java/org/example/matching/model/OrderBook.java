@@ -174,6 +174,12 @@ public class OrderBook {
             } else {
                 // partial fill; buy stays
             }
+            
+            // Handle sell order completion when quantity reaches 0
+            if (sell.getQuantity() == 0) {
+                // Sell order is fully filled, remove from asks if it was added
+                // Note: incoming sell order isn't in the book yet, so no removal needed
+            }
         }
     }
     private void addToBook(TreeMap<Long,Deque<Order>> bookside, Order order){

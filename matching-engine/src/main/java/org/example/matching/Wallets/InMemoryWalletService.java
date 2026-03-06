@@ -43,13 +43,13 @@ public class InMemoryWalletService implements WalletService {
             long required = order.getPrice() * (long) order.getQuantity();
             if (!w.tryReserveCash(required)) return false;
 
-            Reservation r = new Reservation(order.getId(), userId, order.getPrice(), order.getQuantity(), true);
+            Reservation r = new Reservation(order.getId(), userId, order.getPrice(), order.getQuantity(), true, instrument);
             r.setReservedCash(required);
             reservations.put(order.getId(), r);
         } else {
             if (!w.tryReserveShares(instrument, order.getQuantity())) return false;
 
-            Reservation r = new Reservation(order.getId(), userId, order.getPrice(), order.getQuantity(), false);
+            Reservation r = new Reservation(order.getId(), userId, order.getPrice(), order.getQuantity(), false, instrument);
             r.setReservedShares(order.getQuantity());
             reservations.put(order.getId(), r);
         }
@@ -66,7 +66,7 @@ public void releaseReservation(String orderId){
             w.releaseReserveCash(r.getReservedCash());
 
         }else{
-            w.releaseReservedShares(INSTRUMENT,r.getReservedShares());
+            w.releaseReservedShares(r.getInstrument(),r.getReservedShares());
 
         }
     }

@@ -69,7 +69,7 @@ public class Order {
     public void reduceQuantity(long delta) {
         if (delta < 0) throw new IllegalArgumentException("delta must be >= 0");
         if (delta > quantity) throw new IllegalArgumentException("reduce more than remaining");
-        this.quantity -= delta;
+        this.quantity -= (int) delta;
     }
     @Override
     public String toString() {

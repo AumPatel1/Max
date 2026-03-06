@@ -1,0 +1,48 @@
+The "Order of Operations" [Step by Step flow]
+For a trade to settle successfully, the order must be "registered" in the repository before the matching happens. Here is the correct sequence:
+
+The Request: Postman sends a "BUY AAPL" request.
+
+The Check: RiskManager checks the Wallet to make sure the user has enough cash.
+
+The Registration (CRITICAL): You call orderRepository.save(order). Now the system "knows" this order ID belongs to "User1".
+
+The Matching Engine: The order goes into the OrderBook algorithm.
+
+The Match: The algorithm finds a "SELL AAPL" order that was already in the repo. It generates a Trade.
+
+The Settlement: The settleTrade method takes that Trade and asks the Repo: "Who owns the orders in this trade?"
+
+The Hand-off: Because you did Step 3, the Repo says: "Order A belongs to User1, and Order B belongs to User2."
+
+The Bank: The WalletService finally moves the money and shares.
+
+
+
+---- Trade in it -----
+[OrderBook receives the whole Order object, but inside the Matching Algorithm, it ignores the userId entirely. It only looks at:
+
+ Price: To see if the buyer and seller can agree.
+
+ Quantity: To see how much can be traded.
+
+ Timestamp: To decide who was first in line (Price-Time Priority).]
+
+
+
+  When the Matching Engine finishes, it creates a Trade object. That trade object looks like this:
+
+  buyOrderId: "abc-123"
+
+  sellOrderId: "xyz-789"
+
+  price: 150
+
+  quantity: 10
+
+  When this trade is sent to Settlement, the first thing the code does is:
+  orderRepository.findById("abc-123")
+
+
+
+

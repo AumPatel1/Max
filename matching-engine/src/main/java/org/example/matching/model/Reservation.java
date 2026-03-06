@@ -10,6 +10,7 @@ public class Reservation {
     private final String userId;
     private final long priceatReserve;
     private int remainingQty;
+    private String instrument; // Add instrument field
 
     private long reservedCash;
     private long reservedShares;
@@ -21,6 +22,16 @@ public class Reservation {
         this.priceatReserve = priceatReserve;
         this.remainingQty = remainingQty;
         this.isBuy = isBuy;
+        this.instrument = "MARKET"; // Default instrument
+    }
+
+    public Reservation(String orderId, String userId, long priceatReserve, int remainingQty, Boolean isBuy, String instrument) {
+        OrderId = orderId;
+        this.userId = userId;
+        this.priceatReserve = priceatReserve;
+        this.remainingQty = remainingQty;
+        this.isBuy = isBuy;
+        this.instrument = instrument != null ? instrument : "MARKET";
     }
 
     public long reduceBy(int qty) {

@@ -19,4 +19,8 @@ public class DepositRequest {
     public long getAmount() {
         return amount;
     }
+
+    public String getInstrument() {
+        return instrument;
+    }
 }
