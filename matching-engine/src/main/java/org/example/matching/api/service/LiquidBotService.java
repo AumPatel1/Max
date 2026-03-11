@@ -24,6 +24,12 @@ public class LiquidBotService {
     private static final int SPREAD = 4;
 
     public void updateMarketTrigger(String ticker) {
+        // 🎯 KEY CHECK: Only provide liquidity for prediction markets (events), not regular stocks
+        if (!marketManagmentService.isEventTicker(ticker)) {
+            log.info("Ticker {} is not an event ticker - bot will not provide liquidity", ticker);
+            return;
+        }
+        
         MarketEvent event = marketManagmentService.getEventByTicker(ticker);
         if (event == null || event.getStatus() != org.example.matching.api.dto.enums.EventStatus.OPEN) {
             // Don't provide liquidity for settled events

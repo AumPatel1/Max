@@ -50,6 +50,11 @@ public class MarketManagmentService {
     public MarketEvent getEventByTicker(String ticker) {
         return tickerToEvent.get(ticker);
     }
+    
+    // Check if ticker belongs to an event (prediction market) vs regular stock
+    public boolean isEventTicker(String ticker) {
+        return tickerToEvent.containsKey(ticker);
+    }
 
     public MarketEvent createEvent(String id, String question, String yesTicker, String noTicker, int minutesFromNow, Long liquidity) {
         // Use provided liquidity or default to 10000
