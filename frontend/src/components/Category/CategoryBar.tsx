@@ -28,7 +28,7 @@ export default function CategoryBar() {
     <div 
       ref={scrollRef}
       onWheel={handleWheel}
-      className="w-full flex gap-7 pt-0.5 pb-3 bg-[#000000]/50 overflow-x-auto max-w-330 mx-auto scrollbar-hide  scroll-smooth"
+      className="w-full flex gap-7 pt-0.5 pb-3 bg-[#000000]/50 overflow-x-auto max-w-330 mx-auto scrollbar-hide scroll-smooth md:px-6"
     >
       {categories.map((category) => (
         <a
