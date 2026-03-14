@@ -21,6 +21,9 @@ public class WalletController {
     @GetMapping("/{userId}")
     public ResponseEntity<WalletResponse> getWallet(@PathVariable String userId){
         Wallet wallet = walletService.getWallet(userId);
+        if (wallet == null) {
+            return ResponseEntity.notFound().build();
+        }
 
         // Convert AtomicLong maps to Long maps for JSON response
         Map<String, Long> availableShares = wallet.getAvailableShares().entrySet().stream()

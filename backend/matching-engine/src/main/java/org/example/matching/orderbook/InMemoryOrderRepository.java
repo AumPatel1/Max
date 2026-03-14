@@ -1,14 +1,11 @@
 package org.example.matching.orderbook;
 
 import org.example.matching.model.Order;
-import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Repository
 public class InMemoryOrderRepository implements OrderRepository {
     private final Map<String,Order> map = new ConcurrentHashMap<>();
 

@@ -32,7 +32,7 @@ public class Main {
 
     private static void engineSmokeTest(){
         System.out.println("Testing MatchingEngine directly...");
-        MatchingEngine engine = new MatchingEngine();
+        MatchingEngine engine = new MatchingEngine(new EventJournal());
         
         Order s1 = new Order(IdGenerator.newId(),"seller1",100L,10,System.currentTimeMillis(),OrderSide.SELL, "AAPL");
         engine.placeOrder(s1);
@@ -57,7 +57,7 @@ public class Main {
         InMemoryWalletService walletService = new InMemoryWalletService(orderRepo);
         RiskManager riskManager = new RiskManager(walletService, orderRepo);
         EventJournal journal = new EventJournal();
-        MatchingEngine engine = new MatchingEngine();
+        MatchingEngine engine = new MatchingEngine(journal);
         
         // Create orchestrator with full constructor
         OrderOrchestrator orchestrator = new OrderOrchestrator(engine, journal, riskManager, orderRepo, walletService);
@@ -100,7 +100,7 @@ public class Main {
     
     private static void replayTest(){
         System.out.println("Testing journal replay functionality...");
-        MatchingEngine engine2 = new MatchingEngine();
+        MatchingEngine engine2 = new MatchingEngine(new EventJournal());
         Replay r = new Replay(engine2);
         r.replayJournal();
         System.out.println("Reconstructed order book:");

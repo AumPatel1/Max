@@ -1,6 +1,5 @@
 package org.example.matching.api.controller;
 
-import jdk.jfr.Event;
 import lombok.RequiredArgsConstructor;
 import org.example.matching.api.dto.EventRequest;
 import org.example.matching.api.dto.MarketEvent;

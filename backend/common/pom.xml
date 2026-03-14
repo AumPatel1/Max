@@ -11,6 +11,7 @@
         <groupId>org.example</groupId>
         <artifactId>Strongx</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../src/pom.xml</relativePath>
     </parent>
 
     <artifactId>common</artifactId>

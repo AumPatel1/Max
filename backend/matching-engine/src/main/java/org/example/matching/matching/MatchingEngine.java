@@ -51,29 +51,26 @@
 package org.example.matching.matching;
 
 import jakarta.annotation.PostConstruct;
+
 import org.example.matching.api.dto.OrderBookResponse;
 import org.example.matching.api.dto.PriceLevel;
 import org.example.matching.journal.EventJournal;
 import org.example.matching.model.Order;
 import org.example.matching.model.OrderBook;
 import org.example.matching.model.Trade;
-import org.springframework.stereotype.Service;
-
 import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
-
-@Service
 public class MatchingEngine {
 
     private final Map<String, OrderBook> orderBooks = new ConcurrentHashMap<>();
     private final EventJournal journal;
 
-    public MatchingEngine() {
-        this.journal = new EventJournal();
+    public MatchingEngine(EventJournal journal) {
+        this.journal = journal;
     }
 
     @PostConstruct

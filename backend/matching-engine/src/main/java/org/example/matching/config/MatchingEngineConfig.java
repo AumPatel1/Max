@@ -35,6 +35,6 @@ public class MatchingEngineConfig {
 
     @Bean
     public MatchingEngine matchingEngine(EventJournal eventJournal) {
-        return new MatchingEngine();
+        return new MatchingEngine(eventJournal);
     }
 }
