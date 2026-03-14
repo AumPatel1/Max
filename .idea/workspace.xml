@@ -5,174 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a5d438f-b425-4b5e-a7d5-c8fee9bce11f" name="Changes" comment="EventController and settle result">
-      <change afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/matching-engine/matching-engine.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/service/EventTickerRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_10_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_42.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/Wallets/InMemoryWalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/Wallets/InMemoryWalletService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/Wallets/RiskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/Wallets/RiskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/Wallets/WalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/Wallets/WalletService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/controller/WalletController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/service/LiquidBotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/service/LiquidBotService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/service/MarketDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/service/MarketDataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/api/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/config/MatchingEngineConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/config/MatchingEngineConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/matching/MatchingEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/matching/MatchingEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/model/OrderBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/model/OrderBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/orderbook/InMemoryOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/src/main/java/org/example/matching/orderbook/InMemoryOrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/MatchingEngineApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/MatchingEngineApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/Replay.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/Replay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/Wallets/InMemoryWalletService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/Wallets/InMemoryWalletService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/Wallets/RiskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/Wallets/RiskManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/Wallets/WalletService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/Wallets/WalletService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/advice/ApiExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/advice/ApiExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/controller/MarketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/controller/MarketController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/controller/WalletController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/controller/WalletController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/DepositRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/DepositRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderBookResponse$OrderBookResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderBookResponse$OrderBookResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderBookResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderBookResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderResponse$OrderResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderResponse$OrderResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/OrderResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/PriceLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/PriceLevel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/WalletResponse$WalletResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/WalletResponse$WalletResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/WalletResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/dto/WalletResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/api/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/app/MatchingEngineApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/app/MatchingEngineApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/config/MatchingEngineConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/config/MatchingEngineConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/journal/EventJournal.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/journal/EventJournal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/matching/MatchingEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/matching/MatchingEngine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/OrderBook.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/OrderBook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/OrderSide.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/OrderSide.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/Reservation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/Trade.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/Trade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/Wallet.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/model/Wallet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/orderbook/InMemoryOrderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/orderbook/InMemoryOrderRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/orderbook/OrderOrchestrator.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/orderbook/OrderOrchestrator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/orderbook/OrderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/orderbook/OrderRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/util/IdGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/util/IdGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/validation/OrderValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/classes/org/example/matching/validation/OrderValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/matching-engine/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/matching-engine/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/eslint.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/vite.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/MaxLogo.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SearchBar.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserAuth.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.node.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vite.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/journals/engine.log" beforeDir="false" afterPath="$PROJECT_DIR$/journals/engine.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/journals/engine.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/matching-engine.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/Wallets/InMemoryWalletService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/Wallets/RiskManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/Wallets/WalletService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/controller/EventController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/controller/MarketController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/controller/OrderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/controller/WalletController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/DepositRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/EventRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/MarketEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/OrderBookResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/OrderMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/OrderRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/OrderResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/PriceLevel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/WalletResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/dto/enums/EventStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/service/LiquidBotService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/service/MarketDataService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/service/MarketManagmentService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/service/OrderService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/api/service/SettlementService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/app/MatchingEngineApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/config/MatchingEngineConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/journal/EventJournal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/matching/MatchingEngine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/model/Order.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/model/OrderBook.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/model/OrderSide.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/model/Trade.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/model/Wallet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/orderbook/InMemoryOrderRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/java/org/example/matching/orderbook/OrderRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/Wallets/InMemoryWalletService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/Wallets/WalletService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/controller/EventController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/controller/MarketController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/controller/OrderController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/controller/WalletController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/DepositRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/EventRequest$EventRequestBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/EventRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/MarketEvent$MarketEventBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/MarketEvent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/OrderBookResponse$OrderBookResponseBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/OrderBookResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/OrderMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/OrderRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/OrderResponse$OrderResponseBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/OrderResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/PriceLevel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/WalletResponse$WalletResponseBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/WalletResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/dto/enums/EventStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/service/LiquidBotService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/service/MarketDataService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/service/MarketManagmentService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/service/OrderService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/api/service/SettlementService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/app/MatchingEngineApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/config/MatchingEngineConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/journal/EventJournal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/matching/MatchingEngine.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/model/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/model/OrderBook.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/model/OrderSide.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/model/Trade.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/model/Wallet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/orderbook/InMemoryOrderRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/classes/org/example/matching/orderbook/OrderRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/matching-engine/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,20 +46,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "19",
-    "last_opened_file_path": "/Users/aumpatel/Desktop/Spring",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;19&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/aumpatel/Desktop/Spring&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
