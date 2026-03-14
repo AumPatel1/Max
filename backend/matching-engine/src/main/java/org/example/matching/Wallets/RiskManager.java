@@ -1,11 +1,8 @@
 package org.example.matching.Wallets;
 
-import lombok.AllArgsConstructor;
 import org.example.matching.model.Order;
 import org.example.matching.orderbook.OrderRepository;
-import org.springframework.stereotype.Service;
 
-@Service
 public class RiskManager {
 
     private final WalletService walletService;

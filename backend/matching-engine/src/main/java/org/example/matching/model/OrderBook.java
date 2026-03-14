@@ -156,7 +156,7 @@ public class OrderBook {
             Order buy = queue.peekFirst();
             if (buy == null) {
                 bids.remove(bidPrice);
-                continue;
+                continue; // this sends back to while looop
             }
 
             int tradedQty = Math.min(sell.getQuantity(), buy.getQuantity());
@@ -184,7 +184,7 @@ public class OrderBook {
     }
     // Inside your OrderBook.java model
     public Double getBestBid() {
-        return bids.isEmpty() ? 0.0 : bids.lastKey().doubleValue();
+        return bids.isEmpty() ? 0.0 : bids.firstKey().doubleValue();
     }
 
     public Double getBestAsk() {

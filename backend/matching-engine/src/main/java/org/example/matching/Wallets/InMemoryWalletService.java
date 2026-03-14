@@ -6,12 +6,10 @@ import org.example.matching.model.Reservation;
 import org.example.matching.model.Trade;
 import org.example.matching.model.Wallet;
 import org.example.matching.orderbook.OrderRepository;
-import org.springframework.stereotype.Service; // Add this import
-
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Service // Tells Spring this is a managed bean
 public class InMemoryWalletService implements WalletService {
 
     private final Map<String, Wallet> wallets = new ConcurrentHashMap<>();
@@ -92,6 +90,11 @@ public void releaseReservation(String orderId){
     @Override
     public Wallet getWallet(String userId) {
         return wallets.get(userId);
+    }
+
+    @Override
+    public Collection<Wallet> getAllWallets() {
+        return wallets.values();
     }
 
     @Override

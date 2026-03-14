@@ -9,6 +9,7 @@ import org.example.matching.api.dto.OrderResponse;
 import org.example.matching.journal.EventJournal;
 import org.example.matching.matching.MatchingEngine;
 import org.example.matching.model.Order;
+import org.example.matching.model.OrderSide;
 import org.example.matching.model.Trade;
 import org.example.matching.orderbook.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -27,19 +28,47 @@ public class OrderService {
     private final WalletService walletService;
     private final EventJournal eventJournal;
     private final OrderRepository orderRepository;
+    private final EventTickerRegistry eventTickerRegistry;
 
     // In-memory idempotency store: Key -> Previous Response
     private final Map<String, OrderResponse> idempotencyStore = new ConcurrentHashMap<>();
 
     public OrderResponse processOrder(OrderRequest request) {
-        if (idempotencyStore.containsKey(request.getIdempotencyKey())) {
-            return idempotencyStore.get(request.getIdempotencyKey());
+        String idempotencyKey = request.getIdempotencyKey();
+        if (idempotencyKey != null && idempotencyStore.containsKey(idempotencyKey)) {
+            return idempotencyStore.get(idempotencyKey);
         }
-        
+
         Order order = OrderMapper.toDomain(request);
-        
-        if (!riskManager.checkAndReserve(order)) {
-            return buildResponse(order, "REJECTED", "Insufficient funds or shares");
+
+        if (!riskManager.checkAndReserve(order)) { //First tries normal validation (cash for BUY, shares for SELL)
+            // For event tickers: selling a side you don't hold = buying the opposite side.
+            // e.g. SELL NO (no shares) → BUY YES at (100 - price), and vice versa.
+            if (order.getSide() == OrderSide.SELL) { //Only SELL orders get converted to synthetic positions
+                String counterpart = eventTickerRegistry.getCounterpart(order.getInstrument());//Key Formula: YES price = 100 - NO price
+               // Example: SELL NO at 30c → BUY YES at 70c
+                //Validates price > 0 (line 51)
+                if (counterpart != null) {
+                    long complementaryPrice = 100L - order.getPrice();
+                    if (complementaryPrice > 0) {
+                        Order converted = new Order(
+                                order.getId(), order.getUserId(),
+                                complementaryPrice, order.getQuantity(),
+                                order.getTimestamp(), OrderSide.BUY, counterpart //// Changed to BUY
+                        );
+                        if (!riskManager.checkAndReserve(converted)) {
+                            return buildResponse(order, "REJECTED", "Insufficient funds or shares");
+                        }
+                        order = converted;
+                    } else {
+                        return buildResponse(order, "REJECTED", "Insufficient funds or shares");
+                    }
+                } else {
+                    return buildResponse(order, "REJECTED", "Insufficient funds or shares");
+                }
+            } else {
+                return buildResponse(order, "REJECTED", "Insufficient funds or shares");
+            }
         }
 
         orderRepository.save(order);
@@ -62,7 +91,9 @@ public class OrderService {
         );
 
         OrderResponse response = buildResponse(order, "ACCEPTED", "Success");
-        idempotencyStore.put(request.getIdempotencyKey(), response);
+        if (idempotencyKey != null) {
+            idempotencyStore.put(idempotencyKey, response);
+        }
         return response;
     }
     
