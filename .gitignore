@@ -13,5 +13,8 @@ target/
 *.log
 journals/
 
+# Claude
+.claude/
+
 # OS
 .DS_Store
