@@ -200,6 +200,7 @@ public class MarketDataService {
     // =========================================================================
 
     private void sendSnapshot(String sessionId, String marketId) {
+        //get the market
         long seq = seqNumbers.getOrDefault(marketId, new AtomicLong(0)).get();
         List<PriceLevel> bids = prevBids.getOrDefault(marketId, Collections.emptyList());
         List<PriceLevel> asks = prevAsks.getOrDefault(marketId, Collections.emptyList());
