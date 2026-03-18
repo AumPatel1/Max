@@ -80,7 +80,7 @@ public class OrderService {
         for (Trade trade : trades) {
             // so once trade is done manage the cash and shares of the users using their ids and stuff in walletService below
             walletService.settleTrade(trade);
-            marketDataService.UpdateTrade(order.getInstrument(),trade.getPrice(),trade.getQuantity());
+            marketDataService.onTrade(order.getInstrument(), trade);  // updates stats + pushes WS trade event
             eventJournal.appendRaw("TRADE_SETTLED: " + trade.getBuyOrderId() + " <-> " + trade.getSellOrderId());
         }
         var book = matchingEngine.getOrderBookForMarketData(order.getInstrument());
@@ -89,6 +89,8 @@ public class OrderService {
                 book.getBestBid(),
                 book.getBestAsk()
         );
+        // Push book_update diff to WS subscribers after all trades are settled
+        marketDataService.onBookChange(order.getInstrument(), matchingEngine.getSnapshot(order.getInstrument()));
 
         OrderResponse response = buildResponse(order, "ACCEPTED", "Success");
         if (idempotencyKey != null) {

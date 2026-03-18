@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 @RequiredArgsConstructor
@@ -54,6 +55,9 @@ public class MarketManagmentService {
 
         return event;
     }
+//    private long getNextSeq(String ticker) {
+//        return sequences.computeIfAbsent(ticker, k -> new AtomicLong(0)).incrementAndGet();
+//    }
 
     public MarketEvent getEvent(String id) {
         return events.get(id);
