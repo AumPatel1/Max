@@ -1,20 +1,9 @@
 import { useRef } from "react";
-
-const categories = [
-  "Trending",
-  "Politics",
-  "Sports",
-  "Culture",
-  "Crypto",
-  "Climate",
-  "Economics",
-  "Mentions",
-  "Companies",
-  "Financials",
-  "Tech & Science",
-];
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
 
 export default function CategoryBar() {
+  const categories = useSelector((state: RootState) => state.category.categories);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleWheel = (e: React.WheelEvent) => {
@@ -25,7 +14,7 @@ export default function CategoryBar() {
   };
 
   return (
-    <div 
+    <div
       ref={scrollRef}
       onWheel={handleWheel}
       className="w-full flex gap-7 pt-0.5 pb-3 bg-[#000000]/50 overflow-x-auto max-w-330 mx-auto scrollbar-hide scroll-smooth md:px-6"
