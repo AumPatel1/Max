@@ -1,0 +1,22 @@
+# Compiled output
+target/
+*.class
+
+# IDE
+.idea/workspace.xml
+.idea/shelf/
+.idea/libraries/
+.idea/modules.xml
+*.iml
+
+# Logs
+*.log
+journals/
+
+# Claude
+.claude/
+
+# OS
+.DS_Store
+
+.idea/
