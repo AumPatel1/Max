@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../../store/store";
+import { triggerShake, resetShake } from "../../store/searchSlice";
 
-export default function MaxLogo() {
-  const [shouldShake, setShouldShake] = useState(false);
+export default function SearchBar() {
+  const dispatch = useDispatch<AppDispatch>();
+  const shouldShake = useSelector((state: RootState) => state.search.shouldShake);
 
   const handleFocus = () => {
-    setShouldShake(true);
-    setTimeout(() => setShouldShake(false), 500);
+    dispatch(triggerShake());
+    setTimeout(() => dispatch(resetShake()), 500);
   };
 
   return (
     <div className="hidden md:flex bg-[#242423]/50 rounded-[50px] h-10 px-3 items-center gap-3 hover:bg-[#242423]/70 transition-all duration-200 cursor-text border border-transparent focus-within:border-[#48CAE4] group">
       <svg
-        className={`w-5 h-5 group-focus-within:text-[#48CAE4] ${shouldShake ? 'animate-shake' : ''}`}
+        className={`w-5 h-5 group-focus-within:text-[#48CAE4] ${shouldShake ? "animate-shake" : ""}`}
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +24,6 @@ export default function MaxLogo() {
           fill="currentColor"
         />
       </svg>
-
       <input
         type="text"
         placeholder="Search"

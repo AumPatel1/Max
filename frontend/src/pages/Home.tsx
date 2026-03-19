@@ -1,4 +1,5 @@
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 import MarketCard from "../components/MarketCard/MarketCard";
 import InfoCard from "../components/InfoCard/InfoCard";
 import TopicCard from "../components/TopicCard/TopicCard";
@@ -293,6 +294,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
