@@ -70,6 +70,15 @@ public void releaseReservation(String orderId){
     }
 
     @Override
+    public void releaseAllReservationsForInstrument(String instrument) {
+        reservations.values().stream()
+            .filter(r -> instrument.equals(r.getInstrument()))
+            .map(Reservation::getOrderId)
+            .collect(java.util.stream.Collectors.toList())
+            .forEach(this::releaseReservation);
+    }
+
+    @Override
     public void creditUserShares(String userId, long shares) {
         Wallet w = ensureWallet(userId);
         w.addAvailableShares(INSTRUMENT, shares);

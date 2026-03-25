@@ -38,9 +38,9 @@ public class MarketDataService {
     // Monotonically increasing sequence number per market
     private final Map<String, AtomicLong> seqNumbers = new ConcurrentHashMap<>();
 
-    // Ring buffer of the last MAX_BUFFER events per market (for reconnect replay)
+    // Ring buffer of the last MAX_BUFFER events per market (for reconnect replay) - storing a n num of seq updates
     private final Map<String, ArrayDeque<BufferedEvent>> eventBuffers = new ConcurrentHashMap<>();
-    private static final int MAX_BUFFER     = 10_000;
+    private static final int MAX_BUFFER     = 10_000; // max buffer
     private static final int MAX_REPLAY_GAP = 10_000;
 
     // EMA (20-period) per market
@@ -48,11 +48,11 @@ public class MarketDataService {
     private static final double EMA_ALPHA = 2.0 / 21.0; // 2 / (period + 1)
 
     // Previous book levels – needed to compute incremental diffs
-    private final Map<String, List<PriceLevel>> prevBids = new ConcurrentHashMap<>();
-    private final Map<String, List<PriceLevel>> prevAsks = new ConcurrentHashMap<>();
+    private final Map<String, List<PriceLevel>> prevBids = new ConcurrentHashMap<>(); // prev bids /buys
+    private final Map<String, List<PriceLevel>> prevAsks = new ConcurrentHashMap<>();// prev ask/ sells , needed for getting the amount or avg price
 
     // Per-market lock to keep seq + buffer updates atomic across threads
-    private final Map<String, Object> marketLocks = new ConcurrentHashMap<>();
+    private final Map<String, Object> marketLocks = new ConcurrentHashMap<>(); //
 
     // @Lazy breaks MarketDataService <-> MarketWebSocketHandler circular dep
     @Lazy
@@ -60,7 +60,7 @@ public class MarketDataService {
     private MarketWebSocketHandler wsHandler;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-
+//object mapper
     // =========================================================================
     // EXISTING public methods – signatures unchanged
     // =========================================================================

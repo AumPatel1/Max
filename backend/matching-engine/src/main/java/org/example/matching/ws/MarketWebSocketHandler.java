@@ -62,7 +62,7 @@ public class MarketWebSocketHandler extends TextWebSocketHandler {
     // Connection lifecycle
 
 
-    //called automatically by spring after client hits this endpoint - endpoint ws://host:8080/ws/marke
+    //called automatically by spring after client hits this endpoint - endpoint ws://host:8080/ws/market
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
         String sid = session.getId();
@@ -150,7 +150,49 @@ public class MarketWebSocketHandler extends TextWebSocketHandler {
     // -------------------------------------------------------------------------
     // Outbound helpers (called by MarketDataService)
     // -------------------------------------------------------------------------
+/*
+Each user gets their own session:
 
+User A connects → Spring creates session-111 → afterConnectionEstablished(session-111)
+User B connects → Spring creates session-222 → afterConnectionEstablished(session-222)
+User C connects → Spring creates session-333 → afterConnectionEstablished(session-333)
+Complete Flow Step by Step
+Step 1: User Hits WebSocket Endpoint
+User A: new WebSocket("ws://localhost:8080/ws/market")
+Step 2: Spring Creates Session & Calls Your Method
+java
+// Spring automatically calls this for User A
+@Override
+public void afterConnectionEstablished(WebSocketSession session) {
+    String sid = session.getId();  // Spring generates "session-111"
+
+    // Store User A's connection
+    sessions.put("session-111", session);
+    sessionToMarkets.put("session-111", new HashSet());
+}
+Step 3: Multiple Users Connect
+java
+// After 3 users connect:
+sessions = {
+    "session-111": WebSocketSession(User A),  // User A's connection
+    "session-222": WebSocketSession(User B),  // User B's connection
+    "session-333": WebSocketSession(User C)   // User C's connection
+}
+Step 4: Send Message to Specific User
+java
+// Send AAPL data to User A only
+sendToSession("session-111", aaplData);
+
+// Your method finds the right connection:
+public void sendToSession(String sessionId, String json) {
+    // Get User A's actual connection
+    WebSocketSession session = sessions.get("session-111");
+    //              ↑
+    //        This finds User A's WebSocket connection
+
+    session.sendMessage(new TextMessage(json));  // Send to User A only
+}
+ */
     /** Send a JSON string to a single session (thread-safe). */
     public void sendToSession(String sessionId, String json) {
         WebSocketSession session = sessions.get(sessionId);

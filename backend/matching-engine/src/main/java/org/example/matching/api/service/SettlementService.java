@@ -37,6 +37,10 @@ public class SettlementService {
         String winningTicker = outcome.equalsIgnoreCase("YES") ? event.getYesTicker() : event.getNoTicker();
         String losingTicker  = outcome.equalsIgnoreCase("YES") ? event.getNoTicker()  : event.getYesTicker();
 
+        // Release reserved cash/shares for all open (unfilled) orders on both tickers
+        walletService.releaseAllReservationsForInstrument(winningTicker);
+        walletService.releaseAllReservationsForInstrument(losingTicker);
+
         // Credit holders of the winning ticker 100 cash per share (YES+NO = 100 in this system)
         for (org.example.matching.model.Wallet wallet : walletService.getAllWallets()) {
             long winningAvail    = wallet.getAvailableShares(winningTicker);

@@ -15,6 +15,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
         this.handler = handler;
     }
 
+    //this is only endpoint , one will get connected to ws , t
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         // Connect via ws://host:8080/ws/market

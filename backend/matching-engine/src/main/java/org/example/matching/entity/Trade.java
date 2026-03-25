@@ -42,4 +42,17 @@ public class Trade {
 
     @CreationTimestamp
     private LocalDateTime executedAt;
+
+    // Helper methods for compatibility with existing code
+    public String getBuyOrderId() {
+        return buyOrder != null ? buyOrder.getId().toString() : null;
+    }
+
+    public String getSellOrderId() {
+        return sellOrder != null ? sellOrder.getId().toString() : null;
+    }
+
+    public String getInstrument() {
+        return market != null ? market.getQuestion() : null;
+    }
 }

@@ -9,6 +9,7 @@ import java.util.Collection;
 public interface WalletService {
     boolean reserveForOrder(Order order);
     void releaseReservation(String orderId);
+    void releaseAllReservationsForInstrument(String instrument);
     void settleTrade(Trade trade);
 
     // Additional methods needed for testing and API

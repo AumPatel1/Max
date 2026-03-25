@@ -2,7 +2,7 @@ package org.example.matching.Wallets;
 
 import lombok.RequiredArgsConstructor;
 import org.example.matching.entity.User;
-import org.example.matching.entity.Trade;
+import org.example.matching.model.Trade;
 import org.example.matching.model.Order;
 import org.example.matching.model.Reservation;
 import org.example.matching.model.Wallet;
@@ -27,7 +27,7 @@ public class HybridWalletService implements WalletService {
     // Database for persistence
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
-    private final String INSTRUMENT = "MARKET";
+    private final String INSTRUMENT = "STOCK";
 
     @Override
     public boolean reserveForOrder(Order order) {
@@ -87,16 +87,16 @@ public class HybridWalletService implements WalletService {
         Reservation sellRes = reservations.get(sell.getId());
 
         int qty = (int) trade.getQuantity();
-        long tradeValue = trade.getPrice() * (long) qty;
-        String instrument = buy.getInstrument();
+        BigDecimal tradeValue = BigDecimal.valueOf(trade.getPrice()).multiply(BigDecimal.valueOf(qty));
+        String instrument = "STOCK"; // Default instrument for now
         
         // Process Buy Side
         if (buyRes != null) {
             long cashToDebitFromReserved = buyRes.reduceBy(qty);
             buyerWallet.debitReservedCash(cashToDebitFromReserved);
 
-            long refund = cashToDebitFromReserved - tradeValue;
-            if (refund > 0) buyerWallet.addAvailableCash(refund);
+            BigDecimal refund = BigDecimal.valueOf(cashToDebitFromReserved).subtract(tradeValue);
+            if (refund.compareTo(BigDecimal.ZERO) > 0) buyerWallet.addAvailableCash(refund.longValue());
 
             buyerWallet.addAvailableShares(instrument, qty);
         }
@@ -105,7 +105,7 @@ public class HybridWalletService implements WalletService {
         if (sellRes != null) {
             sellRes.reduceBy(qty);
             sellerWallet.debitReservedShares(instrument, (long) qty);
-            sellerWallet.addAvailableCash(tradeValue);
+            sellerWallet.addAvailableCash(tradeValue.longValue());
         }
 
         // Cleanup completed reservations
@@ -157,7 +157,7 @@ public class HybridWalletService implements WalletService {
         // Try to load from database first
         if (!wallets.containsKey(userId)) {
             try {
-                User dbUser = userRepository.findById(Long.valueOf(userId));
+                User dbUser = userRepository.findById(Long.valueOf(userId)).orElse(null);
                 if (dbUser != null) {
                     // Convert database user to in-memory wallet
                     Wallet wallet = new Wallet(userId);
@@ -176,17 +176,12 @@ public class HybridWalletService implements WalletService {
         try {
             Wallet wallet = wallets.get(userId);
             if (wallet != null) {
-                User dbUser = userRepository.findById(Long.valueOf(userId))
-                        .orElseGet(() -> {
-                            User newUser = new User();
-                            newUser.setUsername(userId);
-                            newUser.setEmail(userId + "@example.com");
-                            newUser.setPasswordHash("temp_hash");
-                            return userRepository.save(newUser);
-                        });
+                User dbUser = userRepository.findById(Long.valueOf(userId)).orElse(null);
                 
-                dbUser.setBalance(BigDecimal.valueOf(wallet.getAvailableCash()));
-                userRepository.save(dbUser);
+                if (dbUser != null) {
+                    dbUser.setBalance(BigDecimal.valueOf(wallet.getAvailableCash()));
+                    userRepository.save(dbUser);
+                }
             }
         } catch (Exception e) {
             // Log error but don't fail the operation
