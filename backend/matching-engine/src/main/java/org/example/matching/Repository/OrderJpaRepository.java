@@ -1,4 +1,4 @@
-package org.example.matching.repository;
+package org.example.matching.Repository;
 
 import org.example.matching.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface OrderJpaRepository extends JpaRepository<OrderEntity, String> {
-
+//public interface OrderJpaRepositiry extends JpaRepsitoy<OrderEntity , String>
     // Load all open/partial orders for rebuilding the in-memory book on startup
     @Query("SELECT o FROM OrderEntity o WHERE o.status IN ('OPEN', 'PARTIALLY_FILLED') ORDER BY o.timestamp ASC")
     List<OrderEntity> findAllActive();
