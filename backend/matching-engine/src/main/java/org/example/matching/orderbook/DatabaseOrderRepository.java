@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.matching.entity.OrderEntity;
 import org.example.matching.model.Order;
 import org.example.matching.model.OrderSide;
-import org.example.matching.repository.OrderJpaRepository;
+import org.example.matching.Repository.OrderJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
