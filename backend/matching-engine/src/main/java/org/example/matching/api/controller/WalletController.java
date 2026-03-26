@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+// Controllers face to implemenatations adn they were never connected to any service class ahardcore -
+// they were connected by  pre- service e.g. public interface WalletService {
+// that is an implementation , before it used be for InMemoryWalletService , now we have class DatabaseWalletService
+//with @Service annotation so now it will map all req there , controller only said give me service and not any particular serive
+//that Spring does on its own
 @RestController
 @RequestMapping("/api/wallets")
 @RequiredArgsConstructor
