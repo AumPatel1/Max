@@ -13,8 +13,8 @@ import org.example.matching.model.Order;
 import org.example.matching.model.OrderSide;
 import org.example.matching.model.Trade;
 import org.example.matching.orderbook.OrderRepository;
-import org.example.matching.repository.OrderJpaRepository;
-import org.example.matching.repository.TradeJpaRepository;
+import org.example.matching.Repository.OrderJpaRepository;
+import org.example.matching.Repository.TradeJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

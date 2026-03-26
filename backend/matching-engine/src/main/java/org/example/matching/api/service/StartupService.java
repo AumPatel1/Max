@@ -8,8 +8,8 @@ import org.example.matching.entity.OrderEntity;
 import org.example.matching.matching.MatchingEngine;
 import org.example.matching.model.Order;
 import org.example.matching.model.OrderSide;
-import org.example.matching.repository.MarketEventRepository;
-import org.example.matching.repository.OrderJpaRepository;
+import org.example.matching.Repository.MarketEventRepository;
+import org.example.matching.Repository.OrderJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

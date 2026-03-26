@@ -5,7 +5,7 @@ import org.example.matching.Wallets.WalletService;
 import org.example.matching.api.dto.EventStatus;
 import org.example.matching.api.dto.MarketEvent;
 import org.example.matching.entity.MarketEventEntity;
-import org.example.matching.repository.MarketEventRepository;
+import org.example.matching.Repository.MarketEventRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

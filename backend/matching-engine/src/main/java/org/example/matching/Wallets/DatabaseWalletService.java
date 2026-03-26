@@ -1,12 +1,16 @@
 package org.example.matching.Wallets;
 
 import lombok.RequiredArgsConstructor;
+import org.example.matching.Repository.OrderJpaRepository;
+import org.example.matching.Repository.ReservationRepository;
+import org.example.matching.Repository.WalletRepository;
+import org.example.matching.Repository.WalletShareRepository;
 import org.example.matching.entity.*;
 import org.example.matching.model.Order;
 import org.example.matching.model.Reservation;
 import org.example.matching.model.Trade;
 import org.example.matching.model.Wallet;
-import org.example.matching.repository.*;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
