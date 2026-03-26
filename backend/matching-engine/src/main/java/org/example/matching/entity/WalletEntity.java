@@ -18,3 +18,13 @@ public class WalletEntity {
     @Column(name = "reserved_cash", nullable = false)
     private long reservedCash;
 }
+
+/**
+ *
+ * @Entity - Table name (wallet)
+ * contr and getsets
+ * class walletentity
+ * private String userId,
+ * private long avaiablecash,
+ * priavte long reservedcash
+ */

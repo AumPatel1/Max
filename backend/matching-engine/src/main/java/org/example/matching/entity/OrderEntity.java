@@ -36,3 +36,14 @@ public class OrderEntity {
     @Column(name = "timestamp", nullable = false)
     private long timestamp;
 }
+
+/**
+ *
+ * @Entity - Table name (order)
+ * contr and getsets
+ * class Orders
+ * private String userId,
+ * private String side,
+ * private long price,
+ *
+ */
