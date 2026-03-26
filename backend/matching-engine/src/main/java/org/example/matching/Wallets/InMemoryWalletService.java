@@ -98,6 +98,16 @@ public void releaseReservation(String orderId){
     }
 
     @Override
+    public void zeroOutShares(String userId, String instrument) {
+        Wallet w = wallets.get(userId);
+        if (w == null) return;
+        long avail    = w.getAvailableShares(instrument);
+        long reserved = w.getReservedShares(instrument);
+        if (avail    > 0) w.getAvailableShares().computeIfAbsent(instrument, k -> new java.util.concurrent.atomic.AtomicLong(0)).addAndGet(-avail);
+        if (reserved > 0) w.getReservedShares().computeIfAbsent(instrument,  k -> new java.util.concurrent.atomic.AtomicLong(0)).addAndGet(-reserved);
+    }
+
+    @Override
     public void settleTrade(Trade trade) {
         Order buy = orderRepository.findById(trade.getBuyOrderId()).orElse(null);
         Order sell = orderRepository.findById(trade.getSellOrderId()).orElse(null);

@@ -122,6 +122,16 @@ public class Wallet {
         }
     }
 
+    /** Used by DatabaseWalletService to hydrate reserved cash from DB without going through CAS. */
+    public void initReservedCash(long amount) {
+        reservedcash.set(amount);
+    }
+
+    /** Used by DatabaseWalletService to hydrate reserved shares from DB without going through CAS. */
+    public void initReservedShares(String instrument, long qty) {
+        reservedShares.computeIfAbsent(instrument, k -> new java.util.concurrent.atomic.AtomicLong(0)).set(qty);
+    }
+
     //add so available shares . add the shares and in if not create and add
     public void addAvailableShares(String instrument, long qty) {
         // Fixed: Used AtomicLong in the lambda

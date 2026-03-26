@@ -197,6 +197,15 @@ public class OrderBook {
         q.addLast(order);
         orderPriceIndex.put(order.getId(), order.getPrice());}
 
+    /** Adds a resting order directly to the book WITHOUT matching — used on startup DB replay. */
+    public void addRestingOrder(Order order) {
+        if (order.getSide() == OrderSide.BUY) {
+            addToBook(bids, order);
+        } else {
+            addToBook(ask, order);
+        }
+    }
+
     public boolean cancel(String orderId) {
         Long price = orderPriceIndex.get(orderId);
         if (price == null) return false;
