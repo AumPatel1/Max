@@ -1,4 +1,4 @@
-package org.example.matching.repository;
+package org.example.matching.Repository;
 
 import org.example.matching.entity.WalletEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
