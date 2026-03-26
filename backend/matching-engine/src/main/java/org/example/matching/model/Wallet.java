@@ -81,18 +81,18 @@ public class Wallet {
     //get the qty of reserved of shares
     //pass the shares and the qty to reserve it
     public boolean tryReserveShares(String instrument, long qty) {
-        // Fixed: Use AtomicLong and handle initialization correctly
-        // atomiclong does not hold it instead it points to a memory address
-        AtomicLong avail = availableShares.computeIfAbsent(instrument, k -> new AtomicLong(0));
-        AtomicLong reserved = reservedShares.computeIfAbsent(instrument, k -> new AtomicLong(0));
-//
-        // currently is the
+        // Only look up existing entry — don't create a ghost zero entry if shares don't exist
+        AtomicLong avail = availableShares.get(instrument);
+        if (avail == null) return false;
+        AtomicLong reserved = null;
         while (true) {
             long currentAvail = avail.get();
             if (currentAvail < qty) return false;
-//if avail >qty
-            // avail and subtract from avail
             if (avail.compareAndSet(currentAvail, currentAvail - qty)) {
+                // Create reserved entry only when actually reserving (avoids ghost 0 entries)
+                if (reserved == null) {
+                    reserved = reservedShares.computeIfAbsent(instrument, k -> new AtomicLong(0));
+                }
                 reserved.addAndGet(qty);
                 return true;
             }
@@ -104,24 +104,21 @@ public class Wallet {
 //atomiclong avail = availableshares.computeifabsent(instrument ,
     //atomiclong resrved = resrvedshares.computeIfabsent(instrument,k-> new AtomicLong(0);
     public void releaseReservedShares(String instrument, long qty) {
-        // Fixed: Use AtomicLong here to match the class fields
         AtomicLong reserved = reservedShares.get(instrument);
-        AtomicLong avail = availableShares.get(instrument);
-
         if (reserved != null) {
-            reserved.addAndGet(-qty);
+            if (reserved.addAndGet(-qty) <= 0) reservedShares.remove(instrument);
         }
 
+        AtomicLong avail = availableShares.get(instrument);
         if (avail != null) {
             avail.addAndGet(qty);
         }
     }
 
     public void debitReservedShares(String instrument, long qty) {
-        // Fixed: Changed from AtomicInteger to AtomicLong
         AtomicLong reserved = reservedShares.get(instrument);
         if (reserved != null) {
-            reserved.addAndGet(-qty);
+            if (reserved.addAndGet(-qty) <= 0) reservedShares.remove(instrument);
         }
     }
 

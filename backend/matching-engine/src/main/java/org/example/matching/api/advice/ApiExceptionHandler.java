@@ -26,4 +26,10 @@ public class ApiExceptionHandler {
     public ResponseEntity<String> handleBusinessError(IllegalStateException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
+
+    // Catch Bad Input (e.g. invalid settlement outcome)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleBadArgument(IllegalArgumentException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
 }
