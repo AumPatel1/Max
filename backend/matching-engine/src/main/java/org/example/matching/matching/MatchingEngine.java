@@ -117,6 +117,11 @@ public class MatchingEngine {
         placeOrder(order, false);
     }
 
+    /** Adds an order directly as a resting order — used on startup to restore from DB. */
+    public void addRestingOrder(Order order) {
+        getOrderBook(order.getInstrument()).addRestingOrder(order);
+    }
+
     // replay all lines from journal (optional helper)
     public void replayJournal() {
         List<String> lines = journal.readAllLines();

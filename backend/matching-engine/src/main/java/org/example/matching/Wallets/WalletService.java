@@ -17,4 +17,5 @@ public interface WalletService {
     void creditUserCash(String userId, long cash);
     Wallet getWallet(String userId);
     Collection<Wallet> getAllWallets();
+    void zeroOutShares(String userId, String instrument);
 }
