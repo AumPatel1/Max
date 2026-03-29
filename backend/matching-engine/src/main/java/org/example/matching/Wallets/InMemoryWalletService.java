@@ -32,6 +32,13 @@ public class InMemoryWalletService implements WalletService {
     }
 
     @Override
+    public void createWallet(String userId) {
+        // In-memory implementation: ensureWallet already handles lazy creation,
+        // so this is a no-op but satisfies the WalletService contract.
+        ensureWallet(userId);
+    }
+
+    @Override
     public boolean reserveForOrder(Order order) {
         String userId = order.getUserId();
         String instrument = order.getInstrument();

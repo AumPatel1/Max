@@ -12,6 +12,14 @@ public interface WalletService {
     void settleTrade(Trade trade);
 
     // Additional methods needed for testing and API
+
+    /**
+     * Creates an empty wallet for the given userId if one does not already exist.
+     * Called by AuthController during user registration to guarantee every user
+     * has a wallet before they can place orders or deposit funds.
+     */
+    void createWallet(String userId);
+
     void creditUserShares(String userId, long shares);
     void creditUserShares(String userId, String instrument, long shares);
     void creditUserCash(String userId, long cash);
