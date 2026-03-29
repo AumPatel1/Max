@@ -9,6 +9,9 @@ import org.example.matching.Repository.MarketEventRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class MarketManagmentService {
@@ -24,6 +27,11 @@ public class MarketManagmentService {
         if (eventRepo.existsById(id)) {
             return toDto(eventRepo.findById(id).get());
         }
+
+        // Normalize tickers to uppercase so they match OrderMapper's normalization.
+        // All internal maps (orderBooks, bestBids, bestAsks, wallet shares) key by uppercase instrument.
+        yesTicker = yesTicker.toUpperCase();
+        noTicker  = noTicker.toUpperCase();
 
         // Fund HOUSE_BOT and seed liquidity
         walletService.creditUserCash("HOUSE_BOT", 100_000L);
@@ -49,6 +57,10 @@ public class MarketManagmentService {
 
     public MarketEvent getEvent(String id) {
         return eventRepo.findById(id).map(this::toDto).orElse(null);
+    }
+
+    public List<MarketEvent> getAllEvents() {
+        return eventRepo.findAll().stream().map(this::toDto).collect(Collectors.toList());
     }
 
     @Transactional
