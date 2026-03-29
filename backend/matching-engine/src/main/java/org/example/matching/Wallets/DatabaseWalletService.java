@@ -42,6 +42,18 @@ public class DatabaseWalletService implements WalletService {
 
     // ── WalletService interface ──────────────────────────────────────────────
 
+    /**
+     * Public wallet creation — called once during user registration.
+     * Delegates to ensureWallet() which is idempotent (safe to call if wallet already exists).
+     * The @Transactional here is load-bearing (unlike the private ensureWallet method
+     * where Spring AOP cannot proxy private methods — the annotation there is effectively ignored).
+     */
+    @Override
+    @Transactional
+    public void createWallet(String userId) {
+        ensureWallet(userId);
+    }
+
     @Override
     @Transactional
     public boolean reserveForOrder(Order order) {
