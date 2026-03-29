@@ -15,7 +15,9 @@ public class OrderMapper {
                 System.currentTimeMillis(),
                 OrderSide.valueOf(request.getSide().toUpperCase())
         );
-        order.setInstrument(request.getInstrument());
+        // Normalize to uppercase so all internal keys (orderBooks map, market data maps,
+        // wallet share maps) are consistent regardless of how the client submitted the ticker.
+        order.setInstrument(request.getInstrument().toUpperCase());
         return order;
     }
 }
