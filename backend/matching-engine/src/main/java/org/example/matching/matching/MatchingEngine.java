@@ -85,9 +85,12 @@ public class MatchingEngine {
     private OrderBook getOrderBook(String instrument) {
         return orderBooks.computeIfAbsent(instrument, k -> new OrderBook());
     }
-    // Add this inside your MatchingEngine class
+    // Returns the book for the given instrument, creating it if absent (same as getOrderBook).
+    // Previously used getOrDefault which returned an ephemeral empty book without storing it —
+    // that meant getBestBid/getBestAsk would always return 0 for unseen instruments even after
+    // orders were placed (race with computeIfAbsent in getOrderBook on first call).
     public OrderBook getOrderBookForMarketData(String instrument) {
-        return orderBooks.getOrDefault(instrument, new OrderBook());
+        return orderBooks.computeIfAbsent(instrument, k -> new OrderBook());
     }
 
     // live mode records to journal; record=false used during replay
