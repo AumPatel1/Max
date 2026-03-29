@@ -13,7 +13,8 @@ import lombok.Getter;
 @Data
 @Getter
 public class OrderRequest {
-    @NotBlank(message = "User ID is required")
+    // userId is NOT accepted from the client — it is injected by OrderController from the JWT.
+    // No @NotBlank here: validation would reject the request before the controller sets this field.
     private String userId;
 
     @NotBlank(message = "Instrument is required")
@@ -28,8 +29,9 @@ public class OrderRequest {
     @Positive(message = "Quantity must be greater than zero")
     private long quantity;
 
-    @NotBlank(message = "Idempotency key is required")
-    private String idempotencyKey; // Unique string from the frontend
+    // Optional: if provided, the server returns the cached response for duplicate requests.
+    // Not required — clients that don't need idempotency can omit it.
+    private String idempotencyKey;
 
     public String getUserId() {
         return userId;

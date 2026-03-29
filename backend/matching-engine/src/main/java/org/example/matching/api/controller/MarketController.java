@@ -25,7 +25,7 @@ public class MarketController {
 
     @GetMapping("/orderbook/{instrument}")
     public ResponseEntity<OrderBookResponse> getOrderBook(@PathVariable String instrument) {
-        OrderBookResponse snapshot = matchingEngine.getSnapshot(instrument);
+        OrderBookResponse snapshot = matchingEngine.getSnapshot(instrument.toUpperCase());
         return ResponseEntity.ok(snapshot);
     }
 
