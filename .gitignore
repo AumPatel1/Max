@@ -3,17 +3,20 @@ target/
 *.class
 
 # IDE
-.idea/workspace.xml
-.idea/shelf/
-.idea/libraries/
-.idea/modules.xml
+.idea/
 *.iml
 
 # Logs
 *.log
 journals/
+backend/journals/
 
 .claude/
 
 # OS
 .DS_Store
+
+# Stray source roots
+src/
+backend/src/
+backend/common/
