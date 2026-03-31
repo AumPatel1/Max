@@ -17,6 +17,6 @@ backend/journals/
 .DS_Store
 
 # Stray source roots
-src/
-backend/src/
-backend/common/
+/src/
+/backend/src/
+/backend/common/

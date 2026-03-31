@@ -36,10 +36,12 @@ public class OrderService {
     private final OrderJpaRepository orderJpaRepo;
     private final TradeJpaRepository tradeJpaRepo;
 
+    // in-memory cache — prevents duplicate orders if the client retries the same request
     private final Map<String, OrderResponse> idempotencyStore = new ConcurrentHashMap<>();
 
     public OrderResponse processOrder(OrderRequest request) {
         String idempotencyKey = request.getIdempotencyKey();
+        // same request came in twice — return what we already processed instead of double-placing
         if (idempotencyKey != null && idempotencyStore.containsKey(idempotencyKey)) {
             return idempotencyStore.get(idempotencyKey);
         }
@@ -48,6 +50,7 @@ public class OrderService {
 
         if (!riskManager.checkAndReserve(order)) {
             if (order.getSide() == OrderSide.SELL) {
+                // selling YES at 40¢ is economically the same as buying NO at 60¢ — try the flip
                 String counterpart = eventTickerRegistry.getCounterpart(order.getInstrument());
                 if (counterpart != null) {
                     long complementaryPrice = 100L - order.getPrice();
@@ -71,7 +74,7 @@ public class OrderService {
             }
         }
 
-        // Persist order to DB before placing in engine
+        // save first — engine may match immediately and the trade lookup needs this row to exist
         orderRepository.save(order);
         eventJournal.appendRaw("ORDER_PLACED: " + order.getId());
 
@@ -93,11 +96,10 @@ public class OrderService {
                     .timestamp(trade.getTimestamp())
                     .build());
 
-            // Update resting order's remaining qty in DB
+            // the resting order is whichever side we didn't just submit
             String restingId = (order.getSide() == OrderSide.BUY)
                     ? trade.getSellOrderId() : trade.getBuyOrderId();
             orderJpaRepo.decrementRemainingQty(restingId, (int) trade.getQuantity());
-            // Check if fully filled
             orderJpaRepo.findById(restingId).ifPresent(e -> {
                 if (e.getRemainingQty() - (int) trade.getQuantity() <= 0) {
                     orderJpaRepo.updateStatus(restingId, "FILLED");

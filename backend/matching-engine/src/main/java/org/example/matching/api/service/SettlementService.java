@@ -26,17 +26,19 @@ public class SettlementService {
             throw new IllegalArgumentException("Outcome must be YES or NO, got: " + outcome);
         }
 
+        // figure out which ticker won and which one expires worthless
         String winningTicker = outcome.equalsIgnoreCase("YES") ? event.getYesTicker() : event.getNoTicker();
         String losingTicker  = outcome.equalsIgnoreCase("YES") ? event.getNoTicker()  : event.getYesTicker();
 
-        // Credit every wallet that holds winning shares
         for (Wallet wallet : walletService.getAllWallets()) {
+            // count both available and reserved — reserved shares are still owed at settlement
             long totalWinning = wallet.getAvailableShares(winningTicker)
                               + wallet.getReservedShares(winningTicker);
             if (totalWinning > 0) {
+                // each winning share pays out $1.00 — stored as cents so *100
                 walletService.creditUserCash(wallet.getUserId(), totalWinning * 100L);
             }
-            // Zero out both tickers via the service (works for both DB and in-memory)
+            // wipe both sides so shares don't linger after the market closes
             walletService.zeroOutShares(wallet.getUserId(), winningTicker);
             walletService.zeroOutShares(wallet.getUserId(), losingTicker);
         }
