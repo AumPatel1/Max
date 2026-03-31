@@ -23,22 +23,20 @@ public class MarketManagmentService {
 
     @Transactional
     public MarketEvent createEvent(String id, String question, String yesTicker, String noTicker, int expiry) {
-        // Return existing event if already created (idempotent)
+        // hit the same endpoint twice? just return what's already there
         if (eventRepo.existsById(id)) {
             return toDto(eventRepo.findById(id).get());
         }
 
-        // Normalize tickers to uppercase so they match OrderMapper's normalization.
-        // All internal maps (orderBooks, bestBids, bestAsks, wallet shares) key by uppercase instrument.
+        // everything keys by uppercase internally — normalize here so nothing slips through lowercase
         yesTicker = yesTicker.toUpperCase();
         noTicker  = noTicker.toUpperCase();
 
-        // Fund HOUSE_BOT and seed liquidity
+        // give the house bot enough capital to quote both sides from the start
         walletService.creditUserCash("HOUSE_BOT", 100_000L);
         walletService.creditUserShares("HOUSE_BOT", yesTicker, 2000L);
         walletService.creditUserShares("HOUSE_BOT", noTicker, 2000L);
 
-        // Persist event
         MarketEventEntity entity = MarketEventEntity.builder()
                 .id(id).question(question)
                 .yesTicker(yesTicker).noTicker(noTicker)
@@ -46,10 +44,10 @@ public class MarketManagmentService {
                 .build();
         eventRepo.save(entity);
 
-        // Register ticker pair for synthetic shorts
+        // register the YES/NO pair so the engine knows they're two sides of the same market
         eventTickerRegistry.registerPair(yesTicker, noTicker);
 
-        // Seed initial order book liquidity
+        // drop initial bids/asks so the book isn't empty when the first real user arrives
         liquidBotService.seedMarket(yesTicker, noTicker);
 
         return toDto(entity);
@@ -65,6 +63,7 @@ public class MarketManagmentService {
 
     @Transactional
     public void closeEvent(String id) {
+        // closed = no new orders; settled = payouts done
         eventRepo.updateStatus(id, "CLOSED");
     }
 
