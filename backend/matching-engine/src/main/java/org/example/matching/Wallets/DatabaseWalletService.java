@@ -29,7 +29,6 @@ public class DatabaseWalletService implements WalletService {
 
     // ── Ensure wallet row exists ─────────────────────────────────────────────
 
-    @Transactional
     private void ensureWallet(String userId) {
         if (!walletRepo.existsById(userId)) {
             walletRepo.save(WalletEntity.builder()
