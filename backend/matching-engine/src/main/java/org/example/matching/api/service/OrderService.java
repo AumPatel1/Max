@@ -101,7 +101,7 @@ public class OrderService {
                     ? trade.getSellOrderId() : trade.getBuyOrderId();
             orderJpaRepo.decrementRemainingQty(restingId, (int) trade.getQuantity());
             orderJpaRepo.findById(restingId).ifPresent(e -> {
-                if (e.getRemainingQty() - (int) trade.getQuantity() <= 0) {
+                if (e.getRemainingQty() <= 0) {
                     orderJpaRepo.updateStatus(restingId, "FILLED");
                 }
             });
