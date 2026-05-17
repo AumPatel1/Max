@@ -43,18 +43,24 @@ public class StartupService {
     /** Reloads all OPEN/PARTIALLY_FILLED orders back into the in-memory order books. */
     private void rebuildOrderBooks() {
         List<OrderEntity> activeOrders = orderJpaRepo.findAllActive();
+        int restored = 0;
         for (OrderEntity e : activeOrders) {
-            Order order = new Order(
-                    e.getId(),
-                    e.getUserId(),
-                    e.getPrice(),
-                    e.getRemainingQty(),   // use remaining qty, not original
-                    e.getTimestamp(),
-                    OrderSide.valueOf(e.getSide()),
-                    e.getInstrument()
-            );
-            matchingEngine.addRestingOrder(order);
+            try {
+                Order order = new Order(
+                        e.getId(),
+                        e.getUserId(),
+                        e.getPrice(),
+                        e.getRemainingQty(),   // use remaining qty, not original
+                        e.getTimestamp(),
+                        OrderSide.valueOf(e.getSide()),
+                        e.getInstrument()
+                );
+                matchingEngine.addRestingOrder(order);
+                restored++;
+            } catch (Exception ex) {
+                log.error("Skipping malformed order {} during startup recovery: {}", e.getId(), ex.getMessage());
+            }
         }
-        log.info("Restored {} active order(s) into matching engine from database", activeOrders.size());
+        log.info("Restored {}/{} active order(s) into matching engine from database", restored, activeOrders.size());
     }
 }
