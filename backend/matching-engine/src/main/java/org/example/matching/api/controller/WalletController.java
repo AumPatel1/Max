@@ -73,7 +73,9 @@ public class WalletController {
      */
     @PostMapping("/depositCash")
     public ResponseEntity<String> depositCash(@RequestBody DepositRequest request) {
-        // Extract userId from JWT — prevents users from depositing cash into someone else's wallet
+        if (request.getAmount() <= 0) {
+            return ResponseEntity.badRequest().body("amount must be positive");
+        }
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         walletService.creditUserCash(userId, request.getAmount());
         return ResponseEntity.ok("Deposit Successful");
@@ -86,10 +88,14 @@ public class WalletController {
      */
     @PostMapping("/depositShares")
     public ResponseEntity<String> depositShares(@RequestBody DepositRequest request) {
-        // Extract userId from JWT — same security reason as depositCash
+        if (request.getInstrument() == null || request.getInstrument().isBlank()) {
+            return ResponseEntity.badRequest().body("instrument is required");
+        }
+        if (request.getAmount() <= 0) {
+            return ResponseEntity.badRequest().body("amount must be positive");
+        }
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
-        // Credit shares for the specific instrument
-        walletService.creditUserShares(userId, request.getInstrument(), request.getAmount());
+        walletService.creditUserShares(userId, request.getInstrument().toUpperCase(), request.getAmount());
         return ResponseEntity.ok("Shares Deposited Successfully");
     }
 }
