@@ -37,7 +37,7 @@ public class MarketWebSocketHandler extends TextWebSocketHandler {
 
     // session-id  -> set of markets the session is subscribed to
     private final ConcurrentHashMap<String, Set<String>> sessionToMarkets = new ConcurrentHashMap<>();
-    //client-> to markets they  wants to subs // so string [ client 1, clinet 2] - > market theya re subscirbed to are [ a] , [a,b,c] respectively
+    //client-> to markets they  wants to subs // so string [ appl,tsla] - > markets they are subscirbed to are [ a] , [a,b,c <-(these are the markets)] respectively
 
     // market-id -> set of session-ids subscribed to that market
     private final ConcurrentHashMap<String, Set<String>> marketToSessions = new ConcurrentHashMap<>();
@@ -62,7 +62,7 @@ public class MarketWebSocketHandler extends TextWebSocketHandler {
     // Connection lifecycle
 
 
-    //called automatically by spring after client hits this endpoint - endpoint ws://host:8080/ws/marke
+    //called automatically by spring after client hits this endpoint - endpoint ws://host:8080/ws/markets
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
         String sid = session.getId();

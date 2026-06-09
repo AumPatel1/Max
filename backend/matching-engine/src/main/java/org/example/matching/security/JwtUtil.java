@@ -12,6 +12,32 @@ import java.util.Base64;
 import java.util.Date;
 
 /**
+
+  Moment 1 — Login (/api/auth/login), happens ONCE:
+          - Here is the only place BCrypt runs.
+          - authenticationManager.authenticate() → loadUserByUsername() loads the hashed password from DB → BCrypt compares form password vs DB hash.
+          - If match → jwtUtil.generateToken() mints the token.
+          - Password checked here. Token created here.
+
+          Moment 2 — Every later request with the token (JwtAuthFilter):
+          - No password. No BCrypt. No login form. The user isn't sending a password anymore — just the token.
+          - extractUsername(token) → reads username, verifies the signature (proves token wasn't tampered, using the secret key — not the password).
+          - loadUserByUsername() → loads the user from DB for roles/existence, not to check password.
+          - validateToken() → checks not expired + username matches.
+
+          So your three lines are the token path, where the only "proof" is the signature, not a password.
+
+          LOGIN (once):     form password  ──BCrypt──> DB hash   → if ok, mint token
+          (this is the ONLY BCrypt check)
+
+          LATER (every req): token ──signature check (secret key)──> trust it
+          (no password, no BCrypt)
+
+          The whole point of JWT: you prove who you are with a password once, get a signed token, then the token's signature is your proof from then on — so the server never touches the password again until the
+          token expires and you log in fresh.
+** /
+
+/**
  * JWT utility — responsible for:
  *   - Generating signed tokens (HS256)
  *   - Parsing and validating tokens
